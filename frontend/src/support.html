@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordCard: Word Practice!</title>
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <!-- <link rel="stylesheet" href="/src/css/top.css"> -->
+    <style>
+        @font-face {
+            font-family: 'SeoulNamsanM';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        *{
+            font-family:'Open Sans', sans-serif;
+            box-sizing: border-box;
+        }
+        *::-webkit-scrollbar{
+            width: 13px;
+        }
+        *::-webkit-scrollbar-thumb{
+            background-color: rgb(172, 227, 243);
+            border-radius: 10px;
+        }
+        *::-webkit-scrollbar-track{
+            background-color:rgb(230, 230, 230);
+            border-radius: 10px;
+            box-shadow: inset 0px 0px 1px;
+        }
+        body{
+            margin: 0;
+            
+        }
+        #logo{/*Wordcard Logo*/
+            width: 80%;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #con{
+            width:100%;
+            height: 100vh;
+            
+        }
+        .none{
+            display: none;
+        }
+        #menu{
+            margin: 0;
+            height: 100%;
+            width: 200px;
+            overflow: hidden;
+            border-right: 1px solid rgb(76, 183, 216);
+            text-align: center;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            line-height: 30px;
+            position: fixed;
+            
+        }
+        #main #menu{
+            
+            margin: 0;
+        }
+        #main{
+            position: absolute;
+            left: 200px;
+            width: calc(100% - 200px);
+            display: inline-block;
+            height: 100vh;
+            /* background-image: url('/img/note');
+            background-repeat:no-repeat;
+            background-size:100% 100vh; */
+            
+        }
+        #menucontainer{
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+            
+
+        }
+        #menucontainer > div{
+            width: 100%;
+            line-height: 30px;
+            text-align: left;
+            line-height: 50px;
+            font-size: 100%;
+            color: rgb(94, 198, 230);
+            cursor: pointer;
+        }
+        #gusick{
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #nick{
+            display: inline-block;
+        }
+        
+        #main{
+            display: flex;
+            flex-direction: column;
+            padding: 1% 2%;
+            
+
+        }
+        nav{
+            width: 100%;
+            display: flex;
+            padding: 1%;
+            justify-content: left;
+            height: 8vh;
+            flex-direction: row;
+        }
+        nav > main{
+            color: rgb(96, 178, 255);
+            font-size: 2em;
+            height: 8vh;
+            position: inherit;
+            width: 75vw;
+            font-weight: 545;
+        }
+        #main > hr{
+            width: 100%;
+            background-color: rgb(124, 194, 255);
+        }
+        main > div{
+            color: rgb(96, 178, 255);
+            
+        }
+        #nick{
+            font-size: 1em;
+        }
+        #content > div{
+            font-size: 4vh;
+        }
+        nav > main{
+            font-size: 5vh;
+        }
+        .hi{
+            font-size: 1.2em;
+        }
+        .credit{
+            position: absolute;
+            bottom: 5vh;
+            left: 10%;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+        .credit > div{
+            color: rgb(96, 178, 255);
+            text-align: left;
+            font-size: 100%;
+        }
+        .title{
+            font-size: 3vh;
+            color: rgb(94, 198, 230);
+        }
+        
+        
+        #blessing{
+            padding: 2vh 0;
+            text-align: center;
+            font-size: 2.5vh;
+            color: rgb(94, 198, 230);
+            position: fixed;
+            bottom: 10px;
+            width: 80vw;
+            left: 20%;
+        }
+        nav > div{
+            color: rgb(96, 178, 255);
+            width: 20vw;
+            
+            border: 1px solid rgb(96, 178, 255);
+            border-radius: 10px;
+            margin: 0 1%;
+            background-color: white;
+            height: 7vh;
+            font-size: 3vh;
+            padding: 1%;
+            text-align: center;
+            transition: 0.2s ease-in-out;
+        }
+        nav > div:hover{
+            background-color: rgb(96, 178, 255);
+            color: white;
+            cursor: pointer;
+            border: 1px solid white;
+            transition: ease-in-out 0.2s;
+        }
+        #title{
+            color: rgb(94, 198, 230);
+            font-size: 2vw;
+            font-weight: 548;
+        }
+        #maincontainer{
+            display:flex;
+            flex-direction: column;
+            overflow: auto;
+            justify-content: center;
+        }
+        li > input{
+            border-radius: 10px;
+            width: calc(94%/3);
+            height: 5vh;
+            margin: 1% 1%;
+            border: 1px solid rgb(155, 221, 241);
+        }
+        .btn{
+            background-color: white;
+            color:rgb(94, 198, 230);
+            border: 1px solid rgb(94, 198, 230);
+            border-radius: 10px;
+            
+        }
+        .container{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            padding: 1%;
+        }
+        .optioncontainer{
+            width: calc(90vw - 200px);
+            height:70vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .change{
+            display: flex;
+            flex-direction: column;
+            margin: 1vh 0;
+
+        }
+        .btn{
+            width: 20%;
+            font-size: 1em;
+            text-align: center;
+            padding:  2% 0;
+            border: 1px solid rgb(94, 198, 230);
+        }
+        .btn:hover{
+            cursor: pointer;
+            background-color: rgb(94, 198, 230);
+            border: 1px solid white;
+            color:white;
+            transition: 0.2s ease-in-out;
+        }
+        .change > div{
+            color: rgb(94, 198, 230);
+        }
+        .info{
+            width: 70%;
+            font-size: 1em;
+            margin: auto;
+        }
+        .addinfo{
+            color:rgb(94, 198, 230)
+        }
+        textarea{
+            position: inherit;
+            width: 100%;
+            height: 15vh;
+            border: 1px solid rgb(124, 194, 255);
+            border-radius: 10px;
+            margin: 1vh 0;
+        }
+        #selection{
+            width: 100%;
+            border: 1px solid rgb(124, 194, 255);
+            border-radius: 5px;
+            color: rgb(76, 183, 216);
+        }
+        #submit{
+            width: 100%;
+            border: 1px solid rgb(124, 194, 255);
+            color: rgb(76, 183, 216);
+            border-radius: 5px;
+            height: 4vh;
+            text-align: center;
+            padding: 0.3vh 0;
+        }
+        #submit:hover{
+            color:white;
+            border:1px solid white;
+            background-color: rgb(124, 194, 255);
+            transition: 0.2s ease-in-out;
+        }
+        #standard > li {
+            font-size: 0.9em;
+            
+        }
+        #standard{
+            margin: 1vh 0;
+            color: rgb(94, 198, 230);
+        }
+        
+        #info > div{
+            color: rgb(94, 198, 230);
+        }
+    </style>
+</head>
+<body>
+    <div id="con">
+        <div id="menu">
+            <img src="/img/logo" alt="WordCard" id="logo">
+
+            <div id="menucontainer">
+                <div id="share">Share</div>
+                <div>Games</div>
+                <div><div id="nick" class="nick">nickname</div><img style="width: 20px;" src="/img/face" alt="login"></div>
+                <div id="mypage">MyPage</div>
+                <div id="support">Support</div>
+                <div id="signout">Signout</div>
+            </div>
+            
+            <div class="credit">
+                <div>Credit : </div>
+                <div>Idea: Seo-jin, An</div>
+                <div>Design: Seo-jin, An</div>
+            </div>
+            <!-- 추후 링크로 바꿔야함 -->
+        </div>
+        <div id="main">
+            <nav>
+                <main>Support!</main>
+            </nav>
+            <hr style="border:rgb(94, 198, 230) solid 1px">
+            <div id="maincontainer">
+                <div class="title">Can we help, <span class="nick title"></span>?</div>
+                <div class="optioncontainer">
+                    <div class="change">
+                        <div class="container">
+                            <div class="btn" id="changepass">Change Password</div>
+                            <div class="info">This button will start the process to change your Password.</div>
+                        </div>
+                        <div class="emailinfo">You can't change Email info due to identification.</div>
+                    </div>
+                    <div class="additional">
+                        <div class="addinfo">Anything You want to Tell with admin? </div>
+                        <div class="addinfo"><select name="" id="selection">
+                            <option value="suggestion">Suggestion</option>
+                            <option value="report">Report(Improper Nickname, Swearing)</option>
+                            <option value="others">Others</option>
+                        </select></div>
+                        <textarea name="" id="suggest" cols="30" rows="50" ></textarea>
+                        <div id="submit">Submit</div>
+                    </div>
+                    <div id="info">
+                        <div>Punish standard</div>
+                        <ul id="standard">
+                            <li>Using Swear / Sexual word in Sharelist (like F-word or P-word)</li>
+                            <li>Using Political / Religious / Racist word in Anywhere (like N-word)</li>
+                            <li>Spamming in Suggestion / Report board</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="blessing">blessing words</div>
+        </div>
+    </div>
+    
+</body>
+</html>

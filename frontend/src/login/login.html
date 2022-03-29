@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordCard: Signin</title>
+    <style>
+                body{
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #con{
+            max-width: 1000px;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+        input, button, select{
+            margin: 10px;
+            color: rgb(39, 230, 214);
+            height: 2em;
+            font-size: 1em;
+            outline: none;
+            border: 1px solid rgb(27, 177, 164);
+        }
+        span{
+            margin-left:10px;
+        }
+        input:valid{
+            border: 1px solid rgb(27, 177, 164);
+        }
+        input:invalid{
+            border:1.5px solid red;
+        }
+
+        input:invalid + span::before{
+            color:red;
+        }
+
+        input[type="text"]:invalid + span::before{
+            content: "need to type between 4 to 20 characters.";
+        }
+        input[type="password"]:invalid + span::before{
+            content: "need to type between 8 to 30 characters.";
+        }
+        input[type="email"]:invalid + span::before{
+            content:"pls type proper email syntax.";
+        }
+        input:active{
+            border: 2px solid red;
+        }
+        select[data-id="/mail/register"] ~ input[type="password"]{
+            display: none;
+        }
+        #con{
+            margin: 30% auto 40%;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        h1{
+            font-size: 4vh;
+            color: rgb(58, 204, 204);
+            margin: 0;
+            padding: 5% 0 5% 0;
+        }
+        #logo{
+            width: 35%;
+            height: 70%;
+            display: inline-block;
+            margin: auto 3%;
+        }
+        #header{
+            justify-content:left;
+            display: flex;
+            flex-direction: row;
+            height: 10%;
+            width: 100%;
+        }
+        #sel{
+            border: 2px solid #49b4c7;
+            border-radius: 10px;
+        }
+        input{
+            border-radius: 10px;
+        }
+        .etc {
+            display: flex;
+            align-items: center;
+        }
+
+        .etc > div{
+            margin: auto;
+        }
+
+        .etc a {
+            color: gray;
+            text-decoration: none;
+        }
+        .etc a:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        #con{
+            width: 50%;
+            text-align: center;
+            
+        }
+        hr{
+            width: 100%; 
+            
+        }
+        #haha{
+            margin-top: 0;
+        }
+        input{
+            height: 50px;
+            width: 70%;
+            font-size: 1em;
+            margin:  5px auto;
+        }
+        
+        button{
+            width: 70%;
+            margin: 5px auto;
+            height: 50px;
+            border: none;
+            background-color: rgb(58, 204, 204);
+            color: white;
+            border-radius: 10px;
+        }
+        button:hover{
+            cursor: pointer;
+            transition: 500ms;
+            background-color: white;
+            color: rgb(58, 204, 204);
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="con">
+        <div id="header">
+            <h1>Sign in to</h1><img src="/img/logo" alt="wordcard" id="logo">
+        </div>
+        <hr id="haha">
+
+        <input placeholder=" Ur ID Here-" minlength="4" maxlength="50" type="text" required><span></span>
+        <input placeholder=" Ur Pass Here-" minlength="8" maxlength="30" type="password" required><span></span>
+        <button>next</button>
+        <hr>
+        <div class="etc">
+            <div>
+                <a class="etc2" href="https://www.youtube.com/watch?v=LSgk7ctw1HY&feature=youtu.be">Find Id</a>
+                /
+                <a class="etc2" href="https://www.youtube.com/watch?v=LSgk7ctw1HY&feature=youtu.be">Password</a>
+                |
+                <a class="etc2" id="signup" href="/mail">Sign up</a>
+            </div>
+        </div> 
+    </div>
+</body>
+</html>

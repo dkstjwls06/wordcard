@@ -1,0 +1,15 @@
+{
+  "name": "myts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "concurrently \"cd frontend&&npx webpack -w\" \"cd server&&tsc -w\" \"cd server&&nodemon dist/index.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.1.1",
+    "concurrently": "^7.0.0"
+  }
+}

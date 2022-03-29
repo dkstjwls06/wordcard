@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordCard: Word Practice!</title>
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <!-- <link rel="stylesheet" href="/src/css/top.css"> -->
+    <style>
+        @font-face {
+            font-family: 'SeoulNamsanM';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        *{
+            font-family:'Open Sans', sans-serif;
+            box-sizing: border-box;
+        }
+        *::-webkit-scrollbar{
+            width: 13px;
+        }
+        *::-webkit-scrollbar-thumb{
+            background-color: rgb(172, 227, 243);
+            border-radius: 10px;
+        }
+        *::-webkit-scrollbar-track{
+            background-color:rgb(230, 230, 230);
+            border-radius: 10px;
+            box-shadow: inset 0px 0px 1px;
+        }
+        body{
+            margin: 0;
+            
+        }
+        #logo{/*Wordcard Logo*/
+            width: 80%;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #con{
+            width:100%;
+            height: 100vh;
+            
+        }
+        .none{
+            display: none;
+        }
+        #menu{
+            margin: 0;
+            height: 100%;
+            width: 200px;
+            overflow: hidden;
+            border-right: 1px solid rgb(76, 183, 216);
+            text-align: center;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            line-height: 30px;
+            position: fixed;
+            
+        }
+        #main #menu{
+            
+            margin: 0;
+        }
+        #main{
+            position: absolute;
+            left: 200px;
+            width: calc(100% - 200px);
+            display: inline-block;
+            height: 100vh;
+            /* background-image: url('/img/note');
+            background-repeat:no-repeat;
+            background-size:100% 100vh; */
+            
+        }
+        #menucontainer{
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+            
+
+        }
+        #menucontainer > div{
+            width: 100%;
+            line-height: 30px;
+            text-align: left;
+            line-height: 50px;
+            font-size: 100%;
+            color: rgb(94, 198, 230);
+            cursor: pointer;
+        }
+        #gusick{
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #nick{
+            display: inline-block;
+        }
+        #main{
+            display: flex;
+            flex-direction: column;
+            padding: 1% 2%;
+            
+
+        }
+        nav{
+            width: 100%;
+            display: flex;
+            padding: 1%;
+            justify-content: left;
+            height: 8vh;
+            flex-direction: row;
+        }
+        nav > main{
+            color: rgb(96, 178, 255);
+            font-size: 2em;
+            height: 8vh;
+            position: inherit;
+            width: 75vw;
+            font-weight: 545;
+        }
+        #main > hr{
+            width: 100%;
+            background-color: rgb(124, 194, 255);
+        }
+        main > div{
+            color: rgb(96, 178, 255);
+            
+        }
+        #nick{
+            font-size: 1em;
+        }
+        #content > div{
+            font-size: 4vh;
+        }
+        nav > main{
+            font-size: 5vh;
+        }
+        .hi{
+            font-size: 1.2em;
+        }
+        .credit{
+            position: absolute;
+            bottom: 5vh;
+            left: 10%;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+        .credit > div{
+            color: rgb(96, 178, 255);
+            text-align: left;
+            font-size: 100%;
+        }
+        
+        
+        
+        
+        #blessing{
+            padding: 2vh 0;
+            text-align: center;
+            font-size: 2.5vh;
+            color: rgb(94, 198, 230);
+            position: fixed;
+            bottom: 10px;
+            width: 80vw;
+            left: 20%;
+        }
+        nav > div{
+            color: rgb(96, 178, 255);
+            width: 20vw;
+            
+            border: 1px solid rgb(96, 178, 255);
+            border-radius: 10px;
+            margin: 0 1%;
+            background-color: white;
+            height: 7vh;
+            font-size: 3vh;
+            padding: 1%;
+            text-align: center;
+            transition: 0.2s ease-in-out;
+        }
+        nav > div:hover{
+            background-color: rgb(96, 178, 255);
+            color: white;
+            cursor: pointer;
+            border: 1px solid white;
+            transition: ease-in-out 0.2s;
+        }
+        #wordtable{
+            width: 100%;
+        }
+
+        #wordtable td{
+            padding: 5px 0;
+            text-align: center;
+            width: 33.3%;
+        }
+        #optioncontainer{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        #optioncontainer > div{
+            margin: auto;
+            padding: 1vh 0;
+            
+        }
+        #title{
+            color: rgb(94, 198, 230);
+            font-size: 2vw;
+            font-weight: 548;
+        }
+        #maincontainer{
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        ul{
+            list-style: none;
+            padding:0;
+            width: 100%;
+            height: 60vh;
+            overflow:auto;
+        }
+        li > input{
+            border-radius: 10px;
+            width: calc(94%/3);
+            height: 5vh;
+            margin: 1% 1%;
+            border: 1px solid rgb(155, 221, 241);
+        }
+        #titlevalue{
+            height: 5vh;
+            border-radius: 10px;
+        }
+        .addbtn{
+            text-align: center;
+            color : rgb(94, 198, 230);
+            border: 1px solid rgb(94, 198, 230);
+            border-radius: 10px;
+            height: 5vh;
+            font-size: 3vh;
+        }
+        .addbtn:hover{
+            color:white;
+            border:white;
+            background-color: rgb(94, 198, 230);
+            transition: 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .btn{
+            background-color: white;
+            color:rgb(94, 198, 230);
+            border: 1px solid rgb(94, 198, 230);
+        }
+    </style>
+</head>
+<body>
+    <div id="con">
+        <div id="menu">
+            <img src="/img/logo" alt="WordCard" id="logo">
+
+            <div id="menucontainer">
+                <div id="share">Share</div>
+                <div>Games</div>
+                <div><div id="nick" class="nick">nickname</div><img style="width: 20px;" src="/img/face" alt="login"></div>
+                <div id="mypage">MyPage</div>
+                <div id="support">Support</div>
+                <div id="signout">Signout</div>
+            </div>
+            
+            <div class="credit">
+                <div>Credit : </div>
+                <div>Idea: Seo-jin, An</div>
+                <div>Design: Seo-jin, An</div>
+            </div>
+            <!-- 추후 링크로 바꿔야함 -->
+        </div>
+        <div id="main">
+            <nav>
+                <main>Modify!</main>
+                
+                <div class="menubtn" id="delete">Delete!</div>
+                <div class="menubtn" id="save">Save!</div>
+            </nav>
+            <hr style="border:rgb(94, 198, 230) solid 1px">
+            <div id="maincontainer">
+                <div class="help">When entering multiple meanings or synonyms, divide them into comma(s) (",").</div>
+                <div class="saveoption">
+                    <select name="sort method" id="sort">
+                        <option value="false">sort by random</option>
+                        <option value="true">sort by dictionary</option>
+                    </select>
+                    <button class="btn" id="sortbtn" value="sort">go!</button>
+                    <select name="automean" id="automean">
+                        <option value="true">use mean auto-typer!</option>
+                        <option value="false">don't use and I'll type!</option>
+                    </select>
+                    <button class="btn" id="autotyperbtn" value="autotyper">go!</button>
+                </div>
+                <input type="text" id="titlevalue" placeholder="Type your title here!">
+                <ul id='wordcon'>
+                    
+                </ul>
+            </div>
+            <div id="blessing">blessing words</div>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordCard: Word Practice!</title>
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <style>
+        @font-face {
+            font-family: 'SeoulNamsanM';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        *{
+            font-family:'Open Sans', sans-serif;
+            box-sizing: border-box;
+        }
+        *::-webkit-scrollbar{
+            width: 13px;
+        }
+        *::-webkit-scrollbar-thumb{
+            background-color: rgb(172, 227, 243);
+            border-radius: 10px;
+        }
+        *::-webkit-scrollbar-track{
+            background-color:rgb(230, 230, 230);
+            border-radius: 10px;
+            box-shadow: inset 0px 0px 1px;
+        }
+        body{
+            margin: 0;
+            
+        }
+        #logo{/*Wordcard Logo*/
+            width: 80%;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #con{
+            width:100%;
+            height: 100vh;
+            
+        }
+        .none{
+            display: none;
+        }
+        #menu{
+            margin: 0;
+            height: 100%;
+            width: 200px;
+            overflow: hidden;
+            border-right: 1px solid rgb(76, 183, 216);
+            text-align: center;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            line-height: 30px;
+            position: fixed;
+            
+        }
+        #main #menu{
+            
+            margin: 0;
+        }
+        #main{
+            position: absolute;
+            left: 200px;
+            width: calc(100% - 200px);
+            display: inline-block;
+            height: 100vh;
+            /* background-image: url('/img/note');
+            background-repeat:no-repeat;
+            background-size:100% 100vh; */
+            
+        }
+        #menucontainer{
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+            
+
+        }
+        #menucontainer > div{
+            width: 100%;
+            line-height: 30px;
+            text-align: left;
+            line-height: 50px;
+            font-size: 100%;
+            color: rgb(94, 198, 230);
+            cursor: pointer;
+        }
+        #gusick{
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #nick{
+            display: inline-block;
+        }
+        #main{
+            display: flex;
+            flex-direction: column;
+            padding: 1% 2%;
+            
+
+        }
+        nav{
+            width: 100%;
+            display: flex;
+            padding: 1%;
+            justify-content: left;
+            height: 8vh;
+            flex-direction: row;
+        }
+        nav > main{
+            color: rgb(96, 178, 255);
+            font-size: 2em;
+            height: 8vh;
+            position: inherit;
+            width: 55%;
+            font-weight: 545;
+        }
+        #main > hr{
+            width: 100%;
+            background-color: rgb(124, 194, 255);
+        }
+        main > div{
+            color: rgb(96, 178, 255);
+            
+        }
+        #nick{
+            font-size: 1em;
+        }
+        #content > div{
+            font-size: 4vh;
+        }
+        nav > main{
+            font-size: 5vh;
+        }
+        .hi{
+            font-size: 1.2em;
+        }
+        .credit{
+            position: absolute;
+            bottom: 5vh;
+            left: 10%;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+        .credit > div{
+            color: rgb(96, 178, 255);
+            text-align: left;
+            font-size: 100%;
+        }
+        
+        
+        
+        
+        #blessing{
+            padding: 2vh 0;
+            text-align: center;
+            font-size: 2.5vh;
+            color: rgb(94, 198, 230);
+            position: fixed;
+            bottom: 10px;
+            width: 80vw;
+            left: 20%;
+        }
+        nav > div{
+            color: rgb(96, 178, 255);
+            width: 20%;
+            
+            border: 1px solid rgb(96, 178, 255);
+            border-radius: 10px;
+            margin: 0 1%;
+            background-color: white;
+            height: 7vh;
+            font-size: 3vh;
+            padding: 1%;
+            text-align: center;
+            transition: 0.2s ease-in-out;
+        }
+        nav > div:hover{
+            background-color: rgb(96, 178, 255);
+            color: white;
+            cursor: pointer;
+            border: 1px solid white;
+            transition: ease-in-out 0.2s;
+        }
+        #wordtable{
+            width: 100%;
+            height: 60vh;
+        }
+        tbody{
+            overflow: auto;
+        }
+        #wordtable td{
+            padding: 5px 0;
+            text-align: center;
+            width: 33.3%;
+        }
+        #wordtable tr{
+            height: 5% !important;
+        }
+        #optioncontainer{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        #optioncontainer > div{
+            margin: auto;
+            padding: 1vh 0;
+            
+        }
+        #title{
+            color: rgb(94, 198, 230);
+            font-size: 2vw;
+            font-weight: 548;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="con">
+        <div id="menu">
+            <img src="/img/logo" alt="WordCard" id="logo">
+
+            <div id="menucontainer">
+                <div id="share">Share</div>
+                <div >Games</div>
+                <div><div id="nick" class="nick">nickname</div><img style="width: 20px;" src="/img/face" alt="login"></div>
+                <div id="mypage">MyPage</div>
+                <div id="support">Support</div>
+                <div id="signout">Signout</div>
+            </div>
+            
+            <div class="credit">
+                <div>Credit : </div>
+                <div>Idea: Seo-jin, An</div>
+                <div>Design: Seo-jin, An</div>
+            </div>
+            <!-- 추후 링크로 바꿔야함 -->
+        </div>
+        <div id="main">
+            <nav>
+                <main>Word Practice!</main>
+                <div class="menubtn none" id="upload">Upload</div>
+                <div id="modify">Modify!</div>
+                <div id="exam">Take Exam!</div>
+            </nav>
+            <hr style="border:rgb(94, 198, 230) solid 1px">
+            <div id="wordcontainer">
+                <div id="title"></div>
+                <div id="optioncontainer">
+                    <div><span>Hide words</span><input type="checkbox" class="hidecheck" value="word"></div>
+                    <div><span>Hide means</span><input type="checkbox" class="hidecheck" value="mean"></div>
+                    <div><span>Hide synonym</span><input type="checkbox" class="hidecheck" value="synonym"></div>
+                </div>
+                <table id="wordtable">
+                    <thead>
+                        <tr>
+                            <th>word (en)</th>
+                            <th>means (nat)</th>
+                            <th>synonym</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="blessing">blessing words</div>
+        </div>
+    </div>
+   
+    <!-- <script id="nick/userstat">
+        const nick = document.querySelector('.nick')
+        const init = async () => {
+            const data = await fetchData()
+            nick.innerHTML=data
+            return
+        }
+        init()
+    </script> -->
+    
+    <!--밑쪽 글-->
+    <!-- <script>
+        import { fetchData } from "./id"
+
+        const nick = document.querySelectorAll('.nick')
+        const init = async () => {
+            const data = await fetchData()
+            nick[0].innerHTML=data
+            nick[1].innerHTML = data
+            return
+        }
+        init()
+
+        const bless = document.querySelector('#blessing')
+        const fetchbless = async ()=>{
+            const res = await fetch('/bless')
+            const data = await res.json()
+            bless.innerHTML = data.word
+        }   
+        fetchbless(); 
+        const mypage = document.querySelector('#mypage')
+        mypage.addEventListener('click', e=>{
+            location.href = '/'
+        })
+    </script> -->
+    <!-- <script>
+        const tbody = document.querySelector('#wordtable tbody')
+        const titlecontainer = document.querySelector('#title')
+        let title = decodeURIComponent(window.location.pathname).replaceAll("!@!@$(", " ")
+        console.log(title)
+        title = title.replace(/\/practice\//,'')
+        const fetchtitle = async ()=>{
+            const obj = {
+                title:title
+            }
+            const res = await fetch(`/wordcardinfo`,{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(obj)
+            })
+            const data = await res.json()
+            const uldata = data.result
+            console.log(uldata)
+            
+            
+            
+            titlecontainer.innerHTML = uldata.title
+            const array = ['word','mean','synonym']
+            for(i = 0; i < uldata.content.length; i++){
+                const tr = document.createElement('tr')
+                for(let j = 0; j < 3; j++){
+                    const td = document.createElement('td')
+                    td.innerHTML = uldata.content[i][array[j]]
+                    td.classList.add(array[j])
+                    tr.appendChild(td)
+                }
+                
+                
+                tbody.appendChild(tr)
+            }
+            if(uldata.content.length<11){
+                const tr = document.createElement('tr')
+                const td = document.createElement('td')
+                td.innerHTML = 'You need to add at least 10 words to play the game. Add your word now!'
+                td.colSpan = 3
+                tr.appendChild(td)
+                tbody.appendChild(tr)
+            }
+            word = [...document.querySelectorAll('.word')]
+            mean = [...document.querySelectorAll('.mean')]
+            synonym = [...document.querySelectorAll('.synonym')]
+            
+            elms = { word, mean, synonym }
+            
+        }
+        fetchtitle()
+        console.log(title)
+        
+    </script> -->
+    <!-- <script>
+        let elms
+        let word
+        let mean
+        let synonym
+        let tempobj = {word:[],mean:[],synonym:[]}
+        const optioncontainer = document.querySelector('#optioncontainer');
+        const doelement = (elm, b)=>{
+            if(b){
+                for(let i = 0; i < elms[elm].length;i++){
+                    tempobj[elm].push(elms[elm][i].innerHTML)
+                    elms[elm][i].innerHTML = ''
+                }
+            }else{
+                for(let i = 0; i < elms[elm].length;i++){
+                    elms[elm][i].innerHTML = tempobj[elm][i]
+                }
+            }          
+        };
+
+        optioncontainer.addEventListener('input', e => {
+            doelement(e.target.value, e.target.checked);
+        })        
+    </script>
+    <script>
+        const modify = document.querySelector('#modify')
+        const exam = document.querySelector('#exam')
+
+        modify.addEventListener('click',e=>{
+            let temp = window.location.pathname
+            let name = temp.replace(/\/practice/,'')
+            window.parent.location.href = `/modify${name}`
+        })
+
+        // exam.addEventListener('click',e=>{
+        //     window.parent.location.href = '/prepexam'
+        // })
+    </script> -->
+</body>
+</html>

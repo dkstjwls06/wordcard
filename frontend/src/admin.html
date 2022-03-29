@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordCard: Admin</title>
+    <link rel="shortcut icon" href="/favicon.ico"/>
+
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #con{
+            max-width: 1000px;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+        input, button, select{
+            margin: 10px;
+            color: rgb(39, 230, 214);
+            height: 2em;
+            font-size: 1em;
+            outline: none;
+            border: 1px solid rgb(27, 177, 164);
+        }
+        span{
+            margin-left:10px;
+        }
+        input:valid{
+            border: 1px solid rgb(27, 177, 164);
+        }
+        input:invalid{
+            border:1.5px solid red;
+        }
+
+        input:invalid + span::before{
+            color:red;
+        }
+
+        input[type="text"]:invalid + span::before{
+            content: "need to type between 4 to 20 characters.";
+        }
+        input[type="password"]:invalid + span::before{
+            content: "need to type between 8 to 30 characters.";
+        }
+        input[type="email"]:invalid + span::before{
+            content:"pls type proper email syntax.";
+        }
+        input:active{
+            border: 2px solid red;
+        }
+
+
+        select.del ~ input[type="password"]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="con">
+        <h1>admin 페이지</h1>
+        <select id="sel" class="add">
+            <option value="add" selected>등록하기</option>
+            <option value="del">삭제하기</option>
+        </select>
+        <input placeholder="아이디" minlength="4" maxlength="50" type="text" required><span></span>
+        <input placeholder="비밀번호" minlength="8" maxlength="30" type="password" required><span></span>
+        <button>만들기</button>
+    </div>
+    <script>
+        const inputs = [...document.querySelectorAll('input')];
+        const button = document.querySelector('button');
+        const sel = document.querySelector('#sel');
+
+        sel.addEventListener('change', e => {
+            sel.classList.value = sel.value;
+            inputs.forEach(v => v.value = '');
+            if(sel.value === 'del'){
+                inputs[1].value = 'aaaaaaaa';
+            } else {
+                inputs[1].value = '';
+            }
+        });
+        button.addEventListener('click', async e => {
+            if(inputs.every(v => v.validity.valid)){
+                const obj = {
+                    id:inputs[0].value,
+                    pass:inputs[1].value
+                };
+                const res = await fetch(`/admin/${sel.value}`, {
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify(obj)
+                });
+                const check = await res.json();
+                if(check.status === 'good'){
+                    alert(`${sel.value} 완료`);
+                } else {
+                    alert(`${sel.value} 실패 : ${check.reason}`);
+                }
+            } 
+        });
+    </script>
+</body>
+</html>

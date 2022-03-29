@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordCard: Signup</title>
+    <style>
+                body{
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #con{
+            max-width: 1000px;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+        input, button, select{
+            margin: 10px;
+            color: rgb(39, 230, 214);
+            height: 2em;
+            font-size: 1em;
+            outline: none;
+            border: 1px solid rgb(27, 177, 164);
+        }
+        span{
+            margin-left:10px;
+        }
+        input:valid{
+            border: 1px solid rgb(27, 177, 164);
+        }
+        input:invalid{
+            border:1.5px solid red;
+        }
+
+        input:invalid + span::before{
+            color:red;
+        }
+
+        input[type="text"]:invalid + span::before{
+            content: "need to type between 4 to 20 characters.";
+        }
+        input[type="password"]:invalid + span::before{
+            content: "need to type between 8 to 30 characters.";
+        }
+        input[type="email"]:invalid + span::before{
+            content:"pls type proper email syntax.";
+        }
+        input:active{
+            border: 2px solid red;
+        }
+        *{
+            margin: 0;
+        }
+        input{
+            border-radius: 10px;
+            width: 100%;
+            margin: 5px 0;
+            
+        }
+        button{
+            width: 100%;
+            margin: 5px auto;
+            height: 50px;
+            border: none;
+            background-color: rgb(58, 204, 204);
+            color: white;
+            border-radius: 10px;
+        }
+        button:hover{
+            cursor: pointer;
+            transition: 500ms;
+            background-color: white;
+            color: rgb(58, 204, 204);
+        }
+    </style>
+</head>
+<body>
+    <div id="con">
+        <img src="/img/logo" alt="logo">
+        <input placeholder="Ur New Id here" minlength="4" maxlength="50" type="text" required><span></span>
+        <input placeholder="Ur New password Here" minlength="8" maxlength="30" type="password" required><span></span>
+        <button>Submit</button>
+    </div>
+
+</body>
+</html>

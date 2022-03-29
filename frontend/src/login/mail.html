@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordcard: Signup</title>
+    <!-- <link rel="stylesheet" href="/src/css/main.css"> -->
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #con{
+            max-width: 1000px;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+        input, button, select{
+            margin: 10px;
+            color: rgb(39, 230, 214);
+            height: 2em;
+            font-size: 1em;
+            outline: none;
+            border: 1px solid rgb(27, 177, 164);
+        }
+        span{
+            margin-left:10px;
+        }
+        input:valid{
+            border: 1px solid rgb(27, 177, 164);
+        }
+        input:invalid{
+            border:1.5px solid red;
+        }
+        
+        input:invalid + span::before{
+            color:red;
+        }
+
+        input[type="text"]:invalid + span::before{
+            content: "need to type between 4 to 20 characters.";
+        }
+        input[type="password"]:invalid + span::before{
+            content: "need to type between 8 to 30 characters.";
+        }
+        input[type="email"]:invalid + span::before{
+            content:"pls type proper email syntax.";
+        }
+        input:active{
+            border: 2px solid red;
+        }
+        input[type="password"]{
+            display: none;
+        }
+        #con{
+            margin: 30% auto 40%;
+            height: 40vh;
+            width: 40vh;
+        }
+        
+        *{
+            box-sizing: border-box;
+        }
+        h1{
+            font-size:4vh;
+            padding: 2% 0;
+            color: rgb(58, 204, 204);
+            margin: 0;
+        }
+        #logo{
+            width: 30%;
+            height: 75%;
+            display: inline-block;
+            margin: auto 3%;
+        }
+        #header{
+            justify-content:left;
+            display: flex;
+            flex-direction: row;
+            height: 10vh;
+            width: 100%;
+        }
+        
+        input{
+            border-radius: 10px;
+        }
+        .etc {
+            display: flex;
+            align-items: center;
+        }
+
+        .etc > div{
+            margin: auto;
+        }
+
+        .etc a {
+            color: gray;
+            text-decoration: none;
+        }
+        .etc a:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        #con{
+            width: 60%;
+            text-align: center;
+            
+        }
+        hr{
+            width: 100%;
+        }
+        input{
+            height: 50px;
+            width: 70%;
+            font-size: 20px;
+            margin:  5px auto;
+        }
+        
+        button{
+            width: 70%;
+            margin: 5px auto;
+            height: 50px;
+            border: none;
+            background-color: rgb(58, 204, 204);
+            color: white;
+            border-radius: 10px;
+        }
+        button:hover{
+            cursor: pointer;
+            transition: 500ms;
+            background-color: white;
+            color: rgb(58, 204, 204);
+        }
+        .etc {
+            display: flex;
+            align-items: center;
+            margin: auto;
+        }
+        .etc a {
+            color: gray;
+            text-decoration: none;
+        }
+        .etc a:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="con">
+        <div id="header">
+            <h1>Sign up to </h1><img src="/img/logo" alt="wordcard" id="logo">
+        </div>
+        <hr>
+        <input placeholder=" Ur Email Here-" minlength="4" maxlength="50" type="email" required><span></span>
+        <input placeholder=" Ur Pass Here-" type="password" minlength="4" maxlength="50" type="email" required><span></span>
+        <button>next</button>
+        <hr>
+        <span class="etc"><a class="etc2" href="/login">Back to Sign in</a></span>
+    </div>
+    <script>
+        // const inputs = [...document.querySelectorAll('input')];
+        // const button = document.querySelector('button');
+        // const sel = document.querySelector('#sel');
+        // const logo = document.querySelector('#logo');
+        // inputs[1].value = 'aaaaaaaa';
+        // // const change = e => {
+        // //     sel.dataset.id = sel.value;
+        // //     inputs.forEach(v => v.value = '');
+        // //     // if(sel.value === '/mail/register'){
+        // //     //     inputs[0].type = 'email';
+        // //     //     inputs[0].placeholder = " Ur Email Here-";
+        // //     //     
+        // //     // } 
+        // //     else {
+        // //         inputs[0].type = 'text';
+        // //         inputs[0].placeholder = " Ur ID Here-";
+        // //     }
+        // // };
+
+        // // window.addEventListener('load', change, {once:true});
+        // // sel.addEventListener('change', change);
+        // button.addEventListener('click', async e => {
+        //     if(inputs.every(v => v.validity.valid)){
+        //         const obj = {
+        //             id:inputs[0].value,
+        //             pass:inputs[1].value
+        //         };
+        //         const res = await fetch('/mail/register', {
+        //             method:'POST',
+        //             headers:{
+        //                 'Content-Type':'application/json'
+        //             },
+        //             body:JSON.stringify(obj)
+        //         });
+        //         const check = await res.json();
+        //         if(check.status === 'good'){
+        //             location.href = check.url;
+        //         } else {
+        //             alert(check.reason);
+        //         }
+        //     } 
+        // });
+    </script>
+</body>
+</html>
